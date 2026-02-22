@@ -1,0 +1,136 @@
+/* Reset base */
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenedor principal */
+.login-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Panel izquierdo */
+.left-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #2b2eff, #6a00ff);
+  color: white;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-panel h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.left-panel p {
+  margin-top: 20px;
+  font-size: 18px;
+  max-width: 400px;
+}
+
+/* Panel derecho */
+.right-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  padding: 40px;
+}
+
+/* Caja formulario */
+.form-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-box h2 {
+  margin-bottom: 10px;
+}
+
+/* Texto registro */
+.register-text {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.register-text span {
+  color: #2b2eff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #2b2eff;
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #333;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE MOBILE */
+/* ============================= */
+
+@media (max-width: 900px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    padding: 40px 30px;
+    text-align: center;
+  }
+
+  .left-panel h1 {
+    font-size: 32px;
+  }
+
+  .left-panel p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .right-panel {
+    padding: 30px;
+  }
+}
