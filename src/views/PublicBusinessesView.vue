@@ -2,8 +2,6 @@
 import { ref, onMounted, watch } from 'vue'
 import { useBusinessStore } from '@/stores/businnessStore'
 import { useCategoryStore } from '@/stores/categoryStore'
-import AppHeader from '@/components/PublicNavar.vue'
-import PublicNavar from '@/components/PublicNavar.vue'
 
 const businessStore = useBusinessStore()
 const categoryStore = useCategoryStore()
@@ -22,7 +20,6 @@ watch([search, selectedCategory], () => {
 </script>
 
 <template>
-  <PublicNavar></PublicNavar>
   <div class="container mt-5">
     <h3 class="text-center mb-4 fw-bold">Explora Emprendimientos</h3>
 

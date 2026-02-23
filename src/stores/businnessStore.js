@@ -42,7 +42,7 @@ export const useBusinessStore = defineStore('business', {
     async fetchPublicBusinesses(search = '', categoryId = null) {
       this.loading = true
 
-      let baseSelect = `
+      let selectQuery = `
     id,
     name,
     city,
@@ -50,16 +50,13 @@ export const useBusinessStore = defineStore('business', {
     description,
     instagram,
     business_categories (
-      category_id,
-      categories (
-        id,
-        name
-      )
+      category_id
     )
   `
 
+      // Si hay filtro por categoría, forzamos INNER JOIN
       if (categoryId) {
-        baseSelect = `
+        selectQuery = `
       id,
       name,
       city,
@@ -67,16 +64,12 @@ export const useBusinessStore = defineStore('business', {
       description,
       instagram,
       business_categories!inner (
-        category_id,
-        categories (
-          id,
-          name
-        )
+        category_id
       )
     `
       }
 
-      let query = supabase.from('businesses').select(baseSelect).eq('status', true)
+      let query = supabase.from('businesses').select(selectQuery).eq('status', true)
 
       if (search) {
         query = query.ilike('name', `%${search}%`)
@@ -90,6 +83,8 @@ export const useBusinessStore = defineStore('business', {
 
       if (!error) {
         this.businesses = data
+      } else {
+        console.error(error)
       }
 
       this.loading = false
