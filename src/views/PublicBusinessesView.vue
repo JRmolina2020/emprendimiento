@@ -99,7 +99,7 @@ const handleAuth = async () => {
 
       <section class="feed-content">
         <header class="content-header">
-          <h1 class="title-thin">Lo mejor de nuestra tierra, hecho para ti</h1>
+          <h1 class="title-thin">Lo mejor de nuestra tierra, hecho para ti.</h1>
           <div class="search-container">
             <input
               v-model="search"
