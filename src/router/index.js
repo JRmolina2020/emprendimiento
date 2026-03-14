@@ -31,11 +31,7 @@ const routes = [
     component: PanelAdminView,
     meta: { requiresAdmin: true },
   },
-  { path: '/login', component: LoginView },
-  {
-    path: '/register',
-    component: () => import('@/views/RegisterView.vue'),
-  },
+  
 ]
 
 const router = createRouter({
@@ -54,7 +50,7 @@ router.beforeEach(async (to) => {
   const authRequired = !publicPages.includes(to.path)
 
   if (authRequired && !auth.user) {
-    return '/login'
+    return '/'
   }
 
   if (to.meta.requiresAdmin && auth.role !== 'admin') {

@@ -78,7 +78,7 @@ export const useAuthStore = defineStore('auth', {
       await supabase.auth.signOut()
       this.user = null
       this.role = null
-      router.push('/login')
+      router.push('/')
     },
   },
 })

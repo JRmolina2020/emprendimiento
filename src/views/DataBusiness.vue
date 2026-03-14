@@ -12,6 +12,7 @@ onMounted(() => {
   businessStore.fetchMyBusiness()
   categoryStore.fetchAllCategories()
 })
+
 const isSelected = (categoryId) => {
   if (!businessStore.business?.business_categories) return false
 
@@ -22,13 +23,19 @@ const isSelected = (categoryId) => {
 </script>
 
 <template>
-  a
   <AppHeader />
   <BaseContainer>
-    <div class="container mt-4">
+    <div class="container mt-4 pb-5">
       <div v-if="businessStore.business" class="business-card mx-auto shadow mt-3">
-        <!-- Header con gradiente -->
         <div class="card-header-custom text-center">
+          <div class="profile-image-container mb-3">
+            <img
+              :src="businessStore.business.image_url || 'https://via.placeholder.com/150'"
+              alt="Logo del negocio"
+              class="business-logo-view"
+            />
+          </div>
+
           <h4 class="mb-1 text-white">
             {{ businessStore.business.name }}
           </h4>
@@ -41,7 +48,6 @@ const isSelected = (categoryId) => {
           </span>
         </div>
 
-        <!-- Body -->
         <div class="card-body p-4">
           <div class="info-item">
             <strong>Ciudad:</strong>
@@ -60,8 +66,8 @@ const isSelected = (categoryId) => {
 
           <div class="info-item" v-if="businessStore.business.instagram">
             <strong>Instagram:</strong>
-            <a :href="businessStore.business.instagram" target="_blank">
-              @{{ businessStore.business.instagram }}
+            <a :href="businessStore.business.instagram" target="_blank" class="insta-link">
+              @{{ businessStore.business.instagram.split('/').pop() }}
             </a>
           </div>
 
@@ -82,9 +88,9 @@ const isSelected = (categoryId) => {
           </div>
         </div>
       </div>
-      <div class="all-categories mt-5">
-        <h5 class="mb-3">Características disponibles</h5>
 
+      <div class="all-categories mt-5">
+        <h5 class="mb-3">Características seleccionadas</h5>
         <div class="category-list">
           <span
             v-for="cat in categoryStore.categories"
@@ -104,32 +110,51 @@ const isSelected = (categoryId) => {
 <style scoped>
 .business-card {
   max-width: 450px;
-  border-radius: 14px;
+  border-radius: 20px; /* Un poco más redondeado */
   overflow: hidden;
   background: #fff;
 }
 
 .card-header-custom {
-  background: linear-gradient(135deg, #e056fd, #686de0);
-  padding: 30px 20px;
+  /* Usando el gradiente púrpura/violeta de tus imágenes */
+  background: linear-gradient(135deg, #c042ff, #7a5fff);
+  padding: 40px 20px;
+}
+
+/* Estilos para la imagen circular en la vista */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.business-logo-view {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Aro semi-transparente */
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .info-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.insta-link {
+  color: #7a5fff;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .info-item strong {
   color: #555;
 }
 
-.card-body {
-  font-size: 14px;
-}
-
-/*  */
+/* Categorías */
 .all-categories {
   max-width: 600px;
   margin: auto;
@@ -142,20 +167,23 @@ const isSelected = (categoryId) => {
 }
 
 .category-pill {
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 13px;
   cursor: pointer;
   background: #f1f3f5;
-  transition: 0.2s ease;
+  color: #444;
+  transition: 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .category-pill:hover {
-  transform: scale(1.05);
+  border-color: #c042ff;
 }
 
 .category-pill.selected {
-  background: linear-gradient(135deg, #686de0, #e056fd);
+  background: linear-gradient(135deg, #7a5fff, #c042ff);
   color: white;
+  box-shadow: 0 4px 10px rgba(122, 95, 255, 0.3);
 }
 </style>
