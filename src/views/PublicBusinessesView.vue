@@ -64,7 +64,7 @@ const handleAuth = async () => {
   <div class="app-container">
     <nav class="top-nav">
       <div class="nav-inner">
-        <div class="logo">VALLE<span>EMPRENDE</span></div>
+        <div class="logo">VALLE<span>PRO</span></div>
         <div class="nav-links">
           <button @click="openModal('login')" class="btn-login-nav">Entrar</button>
           <button @click="openModal('register')" class="btn-register-nav">Registrarme</button>
